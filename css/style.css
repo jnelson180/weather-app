@@ -1,0 +1,106 @@
+html {
+height: 100%;
+}
+
+#maindiv {
+  margin: 0 auto;
+  height: 550px;
+  width: 500px;
+  text-align: center;
+  color: black;
+  border-width: 5px;
+  border-style: double;
+  border-color: #77777;
+  border-radius: 50px;
+  background-color: rgba(200, 200, 220, 0.6);
+  box-shadow: 0px 0px 18px white;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
+}
+
+body {
+  position: relative;
+  background: #feffff;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef', GradientType=0);
+  /* IE6-9 */
+  background-size: cover;
+  background-style: no-repeat;
+  font-color: black;
+  font-family: arial;
+
+
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.tableCaps {
+  text-transform: capitalize;
+  border-spacing: 5px;
+  background-color: rgba(122, 155, 255, 0.8);
+  padding: 30px;
+  box-shadow: 0px 0px 24px skyblue;
+  border-radius: 60px;
+  border-style: inset;
+}
+
+.hidden {
+  font-color: white;
+}
+
+h1 {
+  font-color: black;
+  font-family: arial;
+  font-size: 28px;
+  
+}
+
+#loctext {
+  color: black;
+}
+
+#locbutton {
+  background-color: skyblue;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #FFFFFF;
+}
+
+#switchMez {
+  background-color: skyblue;
+  border-radius: 14px;
+  box-shadow: 0px 0px 8px white;
+}
+
+
+
+#weatherCon {
+  color: black;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.on {
+  background-color: rgba(110, 135, 255, 0.7);
+  border-radius: 14px;
+  box-shadow: 0px 0px 8px white;
+  border-radius: 10px;
+}
+
+.off {
+  background-color: rgba(180, 195, 255, 0.7);
+  border-radius: 14px;
+  box-shadow: 0px 0px 8px white;
+  border-radius: 10px;
+}
+
+#foot {
+  color: rgba(150, 0, 0, 0.7);
+  font-size: 14px;
+  margin: auto;
+}
