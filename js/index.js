@@ -1,37 +1,3 @@
-function getMobileOperatingSystem() {
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function() {
-      console.log('other- navigator.geolocation');
-      return 'other';
-    }, function() {
-      alert("Geolocation not supported by browser. Using IP based location instead.");
-      return 'mobile';
-    });
-
-  } else {
-
-    /* */
-    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    var isChrome = !!window.chrome && !!window.chrome.webstore;
-    var ua = navigator.userAgent;
-
-    if (!!window.chrome && (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i) || (/Chrome/i.test(ua)))) {
-      console.log('Mobile browser (or Chrome) detected .');
-      return 'mobile';
-    } else {
-      console.log('other');
-      return 'other';
-    }
-  }
-}
-
-// call to function to initialize test... getMobileOperatingSystem();
-var curOs = getMobileOperatingSystem();
-
-//alert('Mobile browser detected; if statement initialized');
-// console.log('Mobile browser detected; if statement initialized');
-
 $.getJSON("https://freegeoip.net/json?callback=?", function(data) {
   var lat8tud = data.latitude;
   var long8tud = data.longitude;
@@ -39,23 +5,18 @@ $.getJSON("https://freegeoip.net/json?callback=?", function(data) {
   document.getElementById("deftex").innerHTML = 'in ' + data.city + ", " + data.region_name;
 
   function getWeather(callback) {
-
     var weather =
       'https://api.darksky.net/forecast/6f89427b1c6a6fbb4870390ccf05f460/' + lat8tud + ',' + long8tud + '?callback=?';
-    console.log(weather);
-
+    
     $.ajax({
       dataType: 'json',
       url: weather,
       success: callback
     });
   }
+  
   getWeather(function(data) {
-
-    console.log(data);
-
     //imperial measurements below
-
     tempi = Math.round(data.currently.temperature) + " °F";
     flike = Math.round(data.currently.apparentTemperature) + " °F";
     cloudCover = Number(Math.round((data.currently.cloudCover)*100)) + "%";
@@ -80,7 +41,7 @@ $.getJSON("https://freegeoip.net/json?callback=?", function(data) {
       return;
     })();
     
-    
+    // change background image displayed depending on weather conditions
     switch (true) {
       case (data.currently.icon == 'clear-day'):
         var icon = '01d';
@@ -122,8 +83,7 @@ $.getJSON("https://freegeoip.net/json?callback=?", function(data) {
         $("body").css("background-image", "url('http://jakenelson.comxa.com/weather/img/foggy.jpg')");
         break;
 
-        // nighttime cases
-        
+      // nighttime cases  
       case (data.currently.icon == 'clear-night'):
         var icon = '01n';
         console.log("Clear Skies");
@@ -140,11 +100,8 @@ $.getJSON("https://freegeoip.net/json?callback=?", function(data) {
         $("body").css("background-image", "url('http://jakenelson.comxa.com/weather/img/nightclear.jpg')");
         break;
     }
-    /*
-      if (data.currently.apparentTemperature <= 32) {
-        $("#maindiv").css("background-image", "url('http://jakenelson.comxa.com/weather/img/frosty.jpg')");
-      }
-    */
+
+    // load weather condition icon and populate weather table
     document.getElementById("weatherTxt").innerHTML = "<img src='https://openweathermap.org/img/w/" + icon + ".png' height='50px'  width='50px'/>" + 
       '<table width="90%" align="center" id="wetable" class="tableCaps"><tr><td>Temperature</td>' + "<td>" + tempi +
       "</td></tr><br/><tr><td>Feels Like</td><td>" + flike + "</td></tr><tr><td>Conditions</td>" + "<td>" + conditionsi + "</td></tr>" + "<tr><td>Cloud Cover</td><td>" + cloudCover + "</td></tr><tr><td>Humidity</td>" + "<td>" + humidityi + "%</td></tr><br/>" + "<tr><td>Wind</td>" + "<td>" + windi + "</td></tr></table>";
@@ -165,9 +122,12 @@ $.getJSON("https://freegeoip.net/json?callback=?", function(data) {
       document.getElementById('wetable').rows[5].cells[1].innerHTML = '' + windm + '';
     }
   }
+  
+  // handle switching from farenheit to celsius
   document.getElementById('swiButton').innerHTML = '<input type="button" id="btn" value="Click to Convert to Metric (°C, km/H)" class="off"  />';
   $("#swiButton").click(function() {
     toggleState(btn)
   });
+  
 document.getElementById('foot').innerHTML = '<a href="https://darksky.net/poweredby">Powered by Dark Sky</a>'
 });
